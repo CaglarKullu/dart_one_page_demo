@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:web/web.dart';
 
+/* I could have used [Item] and [Category] as classes to give more structured code, I could give 
+as json as in JS project. https://github.com/CaglarKullu/restaurant_page/blob/main/src/components/Menu/Menu.js */
+
 class Item {
   final String name;
   final String description;
@@ -48,7 +51,25 @@ class Category {
   }
 }
 
-HTMLDivElement createMenu(String jsonString) {
+HTMLDivElement createMenu() {
+  final jsonString = '''
+    [
+      {
+        "category": "Starters",
+        "items": [
+          {"name": "Bruschetta", "description": "Grilled bread garlic, tomatoes, olive oil.", "price": "\$8"},
+          {"name": "Stuffed Mushrooms", "description": "Mushrooms filled with herbs cream cheese.", "price": "\$10"}
+        ]
+      },
+      {
+        "category": "Main Courses",
+        "items": [
+          {"name": "Margherita Pizza", "description": "Tomato sauce, mozzarella, and fresh basil.", "price": "\$14"},
+          {"name": "Lasagna", "description": "Layers of pasta, ragu, bechamel, and cheese.", "price": "\$18"}
+        ]
+      }
+    ]
+  ''';
   final decoded = jsonDecode(jsonString) as List;
   List<Category> categories = decoded.map((c) => Category.fromJson(c)).toList();
 
@@ -92,23 +113,3 @@ HTMLDivElement createMenu(String jsonString) {
 
   return menu;
 }
-
-final jsonString = '''
-    [
-      {
-        "category": "Starters",
-        "items": [
-          {"name": "Bruschetta", "description": "Grilled bread garlic, tomatoes, olive oil.", "price": "\$8"},
-          {"name": "Stuffed Mushrooms", "description": "Mushrooms filled with herbs cream cheese.", "price": "\$10"}
-        ]
-      },
-      {
-        "category": "Main Courses",
-        "items": [
-          {"name": "Margherita Pizza", "description": "Tomato sauce, mozzarella, and fresh basil.", "price": "\$14"},
-          {"name": "Lasagna", "description": "Layers of pasta, ragu, bechamel, and cheese.", "price": "\$18"}
-        ]
-      }
-    ]
-  ''';
-var menu = createMenu(jsonString);
