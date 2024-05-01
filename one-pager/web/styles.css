@@ -1,0 +1,73 @@
+@import './src/components/about/about.css';
+@import './src/components/footer/footer.css';
+@import './src/components/homepage/homepage.css';
+@import './src/components/header/header.css';
+@import './src/components/contact/contact.css';
+@import './src/components/menu/menu.css';
+
+/* Global Styles */
+
+@font-face {
+  font-family: 'Alba';
+  src:local('Alba'), url('../web/assets/fonts/ALBA.ttf') format('ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'AlbaS';
+  src: local('AlbaS'), url('../web/assets/fonts/ALBAS.ttf') format('ttf');
+  font-weight: normal;
+}
+
+:root {
+  --primary-color: #9ad3bc; /* Soft green */
+  --accent-color: #f3d1bf;  /* Warm peach */
+  --background-color: #f7f5e6; /* Light cream */
+  --text-color: #5a5a5a;    /* Soft dark grey */
+  --font-heading: 'Alba', cursive; 
+  --font-body: 'AlbaS'; 
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+}
+
+#app {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none; /* Remove underlines from links */
+}
+  /* Main Content Styles */
+#main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    /* Adjustments for tablets and desktops */
+    #main-content #app  {
+        padding: 20px;
+        margin: 20px auto; /* Centering */
+        max-width: 600px; /* Maximum width to maintain readability */
+    }
+
+    /* Additional styles for larger screens */
+}
