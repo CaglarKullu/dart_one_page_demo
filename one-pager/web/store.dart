@@ -57,7 +57,14 @@ class AppState {
   void renderTabs() {
     final activeTab = AppState.instance.activeTab;
     NodeList tabButtons = document.querySelectorAll('.tab-button');
-    // wrapper for querySelectorAll
+
+    /* We need a NodeList wrapper since as per the docs it returns a NodeList.
+    Although is not an Array, it is possible to iterate over it with forEach(). 
+    It can also be converted to a real Array using Array.from(). 
+    However, some older browsers have not implemented NodeList.forEach() nor Array.from(). 
+    This can be circumvented by using Array.prototype.forEach()*/
+
+    // for loop instead of forEach for querySelectorAll
     for (var i = 0; i < tabButtons.length; i++) {
       var tabButton = tabButtons.item(i) as HTMLButtonElement;
       if (tabButton.id == activeTab) {
