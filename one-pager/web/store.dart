@@ -88,22 +88,3 @@ class AppState {
     mainContent.append(tabs[activeTab].content()); // Update with new content
   }
 }
-
-final jsonString = '''
-    [
-      {
-        "category": "Starters",
-        "items": [
-          {"name": "Bruschetta", "description": "Grilled bread garlic, tomatoes, olive oil.", "price": "\$8"},
-          {"name": "Stuffed Mushrooms", "description": "Mushrooms filled with herbs cream cheese.", "price": "\$10"}
-        ]
-      },
-      {
-        "category": "Main Courses",
-        "items": [
-          {"name": "Margherita Pizza", "description": "Tomato sauce, mozzarella, and fresh basil.", "price": "\$14"},
-          {"name": "Lasagna", "description": "Layers of pasta, ragu, bechamel, and cheese.", "price": "\$18"}
-        ]
-      }
-    ]
-  ''';
