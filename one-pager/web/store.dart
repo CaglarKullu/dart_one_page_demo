@@ -5,6 +5,9 @@ import 'src/components/contact/contact.dart';
 import 'src/components/homepage/homepage.dart';
 import 'src/components/menu/menu.dart';
 
+/* I could have used tab and app state as classes to give more structured code, I could give 
+as json as in JS project. https://github.com/CaglarKullu/restaurant_page/blob/main/src/store.js */
+
 // Tab class
 class Tab {
   int id;
@@ -28,21 +31,19 @@ class AppState {
       Tab(0, 'Home', true, createHomepage),
       Tab(1, 'About', false, createAbout),
       Tab(2, 'Contact', false, createContact),
-      Tab(3, 'Menu', false, createMenu)
+      Tab(3, 'Menu', false, createMenu),
     ]);
     return _instance!;
   }
 
   // setState function
   void setState(Map<String, dynamic> newState) {
-    newState.forEach((key, value) {
-      if (key == 'activeTab' && value != null) {
-        activeTab = value;
-        for (var tab in tabs) {
-          tab.active = (tab.id == activeTab);
-        }
+    if (newState.containsKey('activeTab')) {
+      activeTab = newState['activeTab'];
+      for (var tab in tabs) {
+        tab.active = (tab.id == activeTab);
       }
-    });
+    }
   }
 
   // activateTab function
@@ -58,8 +59,9 @@ class AppState {
     NodeList tabButtons = document.querySelectorAll('.tab-button');
     // wrapper for querySelectorAll
     for (var i = 0; i < tabButtons.length; i++) {
-      var tabButton = tabButtons.item(i) as Element;
-      if (int.parse(tabButton.id) == activeTab) {
+      var tabButton = tabButtons.item(i) as HTMLButtonElement;
+      if (tabButton.id == activeTab) {
+        print(tabButton.id.toString());
         tabButton.classList.add('active');
       } else {
         tabButton.classList.remove('active');
@@ -86,3 +88,22 @@ class AppState {
     mainContent.append(tabs[activeTab].content()); // Update with new content
   }
 }
+
+final jsonString = '''
+    [
+      {
+        "category": "Starters",
+        "items": [
+          {"name": "Bruschetta", "description": "Grilled bread garlic, tomatoes, olive oil.", "price": "\$8"},
+          {"name": "Stuffed Mushrooms", "description": "Mushrooms filled with herbs cream cheese.", "price": "\$10"}
+        ]
+      },
+      {
+        "category": "Main Courses",
+        "items": [
+          {"name": "Margherita Pizza", "description": "Tomato sauce, mozzarella, and fresh basil.", "price": "\$14"},
+          {"name": "Lasagna", "description": "Layers of pasta, ragu, bechamel, and cheese.", "price": "\$18"}
+        ]
+      }
+    ]
+  ''';

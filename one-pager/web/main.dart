@@ -9,7 +9,6 @@ void main() {
   AppState state = AppState.instance; // Singleton
   app.innerHTML = ''; // Clear existing content
   app.appendChild(createHeader());
-  state.renderTabs();
-  state.renderContent();
+  state.activateTab(state.activeTab!);
   app.appendChild(createFooter());
 }
